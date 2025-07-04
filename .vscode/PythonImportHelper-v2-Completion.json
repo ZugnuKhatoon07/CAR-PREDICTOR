@@ -1,0 +1,98 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    companies = sorted(car['company'].unique())\n    car_model_dict = car.groupby('company')['name'].apply(list).to_dict()\n    years = sorted(car['year'].unique(), reverse=True)\n    fuel_type = car['fuel_type'].unique()\n    return render_template('index.html',\n                           companies=companies,\n                           car_models=car_model_dict,\n                           years=years,\n                           fuel_type=fuel_type)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def predict():\n    company = request.form.get('company')\n    car_model = request.form.get('car_model')\n    year = int(request.form.get('year'))\n    fuel_type = request.form.get('fuel_type')\n    kms_driven = int(request.form.get('kilo_driven'))\n    # Prepare input for prediction\n    input_data = pd.DataFrame([[car_model, company, year, kms_driven, fuel_type]],\n                              columns=['name', 'company', 'year', 'kms_driven', 'fuel_type'])\n    # Perform prediction",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n# Load cleaned car data\ncar = pd.read_csv(\"Cleaned Car.csv\")\n# Load trained model (pickle file)\nmodel = pickle.load(open(\"LinearRegressioModel.pkl\", 'rb'))  # Ensure file name is correct\n@app.route('/')\ndef index():\n    companies = sorted(car['company'].unique())\n    car_model_dict = car.groupby('company')['name'].apply(list).to_dict()\n    years = sorted(car['year'].unique(), reverse=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "car",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "car = pd.read_csv(\"Cleaned Car.csv\")\n# Load trained model (pickle file)\nmodel = pickle.load(open(\"LinearRegressioModel.pkl\", 'rb'))  # Ensure file name is correct\n@app.route('/')\ndef index():\n    companies = sorted(car['company'].unique())\n    car_model_dict = car.groupby('company')['name'].apply(list).to_dict()\n    years = sorted(car['year'].unique(), reverse=True)\n    fuel_type = car['fuel_type'].unique()\n    return render_template('index.html',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model = pickle.load(open(\"LinearRegressioModel.pkl\", 'rb'))  # Ensure file name is correct\n@app.route('/')\ndef index():\n    companies = sorted(car['company'].unique())\n    car_model_dict = car.groupby('company')['name'].apply(list).to_dict()\n    years = sorted(car['year'].unique(), reverse=True)\n    fuel_type = car['fuel_type'].unique()\n    return render_template('index.html',\n                           companies=companies,\n                           car_models=car_model_dict,",
+        "detail": "app",
+        "documentation": {}
+    }
+]
